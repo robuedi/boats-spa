@@ -1,8 +1,8 @@
 import React from "react";
 import {useParams} from 'react-router-dom';
 import { useQuery } from "@apollo/client";
-import {GET_BOAT} from "../../graphql/boats/index";
-import BoatDetails from "../../components/Boat/BoatDetails";
+import {GET_BOAT} from "../../graphql/boats";
+import BoatDetails from "../../components/boat/BoatDetails";
 
 const BoatList = () => {
     const {id} = useParams();

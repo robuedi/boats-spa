@@ -7,6 +7,7 @@ export const GET_BOATS = gql`
                 name
                 description
                 price
+                sold
             }
             paginatorInfo {
                 currentPage
@@ -22,6 +23,7 @@ export const GET_BOAT = gql`
         name
         description
         price
+        sold
     }
   }
 `;

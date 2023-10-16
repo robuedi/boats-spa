@@ -1,8 +1,8 @@
 import React from "react";
 
-import BoatList from "../../components/Boat/BoatList";
+import BoatList from "../../components/boat/BoatList";
 
-const Home = () => {
+const Boats = () => {
     return (
         <div>
             <div className="middle">
@@ -12,4 +12,4 @@ const Home = () => {
         </div>
     );
 }
-export default Home;
+export default Boats;

@@ -20,10 +20,15 @@ const BoatList = () => {
                 <tbody>
                     {data.boats.data.map((boat) => (
                         <tr key={boat.id}>
-                            <td className="bg-image" style={{backgroundImage: "url(https://loremflickr.com/500/300/yacht?v="+Math.random()+")", minWidth: '200px'}}></td>
+                            <td className="bg-image" style={{backgroundImage: "url(https://loremflickr.com/500/300/yacht,boat?v="+Math.random()+")", minWidth: '200px'}}></td>
                             <td  >
                                 <h4>{boat.name}</h4>
                                 <p>{boat.description}</p>
+                                <p><strong>Available</strong>: {boat.sold ?
+                                    <span className="badge bg-warning text-dark">No</span>
+                                    :
+                                    <span className="badge bg-light text-dark">Yes</span>
+                                }</p>
                                 <br/>
                                 <span>£{boat.price.toLocaleString()}</span>
                             </td>

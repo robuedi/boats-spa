@@ -1,7 +1,10 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import BoatDetails from "./pages/Boat/BoatDetails";
+import Boats from "./pages/boats/Boats";
+import BoatDetails from "./pages/boats/BoatDetails";
+import Payment from "./pages/payment/Payment";
+import PaymentFailed from "./pages/payment/PaymentFailed";
+import PaymentCompleted from "./pages/payment/PaymentCompleted";
 import Navbar from "./components/layout/Navbar/navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -13,21 +16,26 @@ const client = new ApolloClient({
 });
 
 function App() {
+
+
   return (
     <Router>
         <ApolloProvider client={client}>
             <Navbar />
             <div className="container">
                 <Routes>
-                    <Route path="/" element={<Home/>} exact />
-                    <Route
-                        path="boats/:id"
-                        element={<BoatDetails />}
-                    />
+                    <Route path="/" element={<Boats/>} exact />
+                    <Route path="boats/:id" element={<BoatDetails />} />
+                    <Route path="/payment/:id" element={<Payment />} />
+                    <Route path="/payment/completed" element={<PaymentCompleted />} />
+                    <Route path="/payment/failed" element={<PaymentFailed />} />
+
                 </Routes>
             </div>
         </ApolloProvider>
+
     </Router>
+
   );
 }
 
