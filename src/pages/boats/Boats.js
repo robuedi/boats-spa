@@ -4,12 +4,12 @@ import BoatList from "../../components/boat/BoatList";
 
 const Boats = () => {
     return (
-        <div>
-            <div className="middle">
+        <>
+            <div className="list-container">
                 <h1>Boats</h1>
                 <BoatList/>
             </div>
-        </div>
+        </>
     );
 }
 export default Boats;

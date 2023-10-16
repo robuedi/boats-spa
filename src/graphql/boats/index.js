@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 export const GET_BOATS = gql`
-    query boats {
-        boats(first: 10) {
+    query boats($page: Int!, $name: String) {
+        boats(first: 5, page: $page, name: $name) {
             data {
                 id
                 name
@@ -11,6 +11,7 @@ export const GET_BOATS = gql`
             }
             paginatorInfo {
                 currentPage
+                hasMorePages
             }
         }
     }
@@ -23,6 +24,9 @@ export const GET_BOAT = gql`
         name
         description
         price
+        year
+        length
+        location
         sold
     }
   }

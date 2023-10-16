@@ -1,5 +1,5 @@
 import { PaymentElement } from "@stripe/react-stripe-js";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -54,7 +54,7 @@ export default function CheckoutForm(props) {
     return (
         <form id="payment-form" onSubmit={handleSubmit}>
             <PaymentElement id="payment-element" />
-            <button disabled={isProcessing || !stripe || !elements} id="submit">
+            <button disabled={isProcessing || !stripe || !elements} id="submit" className="btn btn-primary">
         <span id="button-text">
           {isProcessing ? "Processing ... " : "Pay now"}
         </span>

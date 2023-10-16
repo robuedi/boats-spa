@@ -1,5 +1,5 @@
 function PaymentFailed() {
-    return <h1>Payment failed</h1>;
+    return <h3>Payment failed</h3>;
 }
 
 export default PaymentFailed;

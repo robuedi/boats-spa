@@ -1,5 +1,5 @@
 function PaymentCompleted() {
-    return <h1>Congratulations!! Payment successful</h1>;
+    return <h3>Congratulations!! Payment successful</h3>;
 }
 
 export default PaymentCompleted;
