@@ -1,7 +1,6 @@
 import { PaymentElement } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Payment from "./../../../services/Payment"
 

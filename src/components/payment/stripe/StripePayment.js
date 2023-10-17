@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import StripeCheckoutForm from "./StripeCheckoutForm";
-import axios from 'axios';
 import Payment from "./../../../services/Payment"
 
 function StripePayment(props) {
@@ -12,7 +11,7 @@ function StripePayment(props) {
     const [email, setEmail] = useState('');
 
     useEffect(() => {
-        setStripePromise(loadStripe('pk_test_51O1mfsDgSOPks96HwmonZqXjRHysIFkCjcwQcvw1CjxmhHWaGaVdrnndYQghHnpR3fmavQenWXaH0lF3Q98lEsQW00a8dabJYz'))
+        setStripePromise(loadStripe(`${process.env.REACT_APP_REACT_PK}`))
     }, []);
 
     const getIntent = () => {
