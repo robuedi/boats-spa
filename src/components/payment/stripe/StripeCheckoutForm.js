@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import Payment from "./../../../services/Payment"
 
 export default function CheckoutForm(props) {
     const stripe = useStripe();
@@ -17,7 +18,6 @@ export default function CheckoutForm(props) {
 
         if (!stripe || !elements) {
             // Stripe.js has not yet loaded.
-            // Make sure to disable form submission until Stripe.js has loaded.
             return;
         }
 
@@ -26,29 +26,20 @@ export default function CheckoutForm(props) {
         const {error} = await stripe.confirmPayment({
             elements,
             redirect: 'if_required'
-            // confirmParams: {
-            //     return_url: `${window.location.origin}/completion`,
-            // },
         })
 
         //we have an issue
         if(error){
-            await axios.post("http://localhost:80/api/v1/payment/fail", {
-                intent_id: props.intentId
-            })
+            await Payment.failPayment(props.intentId)
             navigate('/payment/failed')
         }
         else{
             //successful
-            await axios.post("http://localhost:80/api/v1/payment/complete", {
-                intent_id: props.intentId
-            })
+            await Payment.completePayment(props.intentId)
             navigate('/payment/completed')
         }
 
         setIsProcessing(false);
-
-
     };
 
     return (

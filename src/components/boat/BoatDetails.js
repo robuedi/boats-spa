@@ -1,16 +1,9 @@
 import React from "react";
 import { useState } from "react";
-
-import { useNavigate } from "react-router-dom";
 import StripePayment from "../payment/stripe/StripePayment";
 
 export default function BoatDetails(props){
     const [paymentActive, setPaymentActive] = useState(false);
-    const history = useNavigate();
-
-    const handleBuy = (id) => {
-        history(`/payment/${id}`);
-    };
 
     return (
         <>

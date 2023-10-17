@@ -3,6 +3,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import StripeCheckoutForm from "./StripeCheckoutForm";
 import axios from 'axios';
+import Payment from "./../../../services/Payment"
 
 function StripePayment(props) {
     const [stripePromise, setStripePromise] = useState(null);
@@ -15,10 +16,7 @@ function StripePayment(props) {
     }, []);
 
     const getIntent = () => {
-        axios.post("http://localhost:80/api/v1/payment/initiate", {
-            product_id: props.productId,
-            email: email,
-        })
+        Payment.initiatePayment(props.productId, email)
         .then((result) => {
             setClientSecret(result.data.client_secret);
             setIntentId(result.data.intent_id)

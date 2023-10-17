@@ -2,14 +2,14 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Boats from "./pages/boats/Boats";
 import BoatDetails from "./pages/boats/BoatDetails";
-import Payment from "./pages/payment/Payment";
 import PaymentFailed from "./pages/payment/PaymentFailed";
 import PaymentCompleted from "./pages/payment/PaymentCompleted";
 import Navbar from "./components/layout/Navbar/navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import axios from 'axios';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
+axios.defaults.baseURL = 'http://localhost:80';
 const client = new ApolloClient({
     uri: "http://localhost/graphql",
     cache: new InMemoryCache(),
@@ -26,10 +26,9 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Boats/>} exact />
                     <Route path="boats/:id" element={<BoatDetails />} />
-                    <Route path="/payment/:id" element={<Payment />} />
+                    {/*<Route path="/payment/:id" element={<Payment />} />*/}
                     <Route path="/payment/completed" element={<PaymentCompleted />} />
                     <Route path="/payment/failed" element={<PaymentFailed />} />
-
                 </Routes>
             </div>
         </ApolloProvider>

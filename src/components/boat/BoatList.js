@@ -1,14 +1,14 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { useQuery } from "@apollo/client";
-import { Link } from "react-router-dom";
 import {GET_BOATS} from "../../graphql/boats/index";
 import { useState } from "react";
-import {loadStripe} from "@stripe/stripe-js";
+import BoatItem from "./BoatItem";
 
 const BoatList = () => {
     const [currentPage, setCurrentPAge] = useState(1);
     const [nameFilter, setNameFilter] = useState("");
 
+    //get the data
     const {loading, error, data} = useQuery(GET_BOATS, {
         variables: {
             page: currentPage,
@@ -26,25 +26,7 @@ const BoatList = () => {
                     {data.boats.data.map((boat) => (
                         <tr key={boat.id}>
                             <td >
-                                <div className="boat-item-container">
-                                    <div className="bg-image" style={{backgroundImage: "url(https://loremflickr.com/500/300/yacht,boat?v="+Math.random()+")"}}></div>
-                                    <div>
-                                        <h4>{boat.name}</h4>
-                                        <p><strong>Available</strong>: {boat.sold ?
-                                            <span className="badge bg-warning text-dark">No</span>
-                                            :
-                                            <span className="badge bg-light text-dark">Yes</span>
-                                        }</p>
-                                        <p>{boat.description}</p>
-                                        <br/>
-                                        <div className="show-details-container">
-                                            <span>£ {boat.price.toLocaleString()}</span>
-                                            <Link to={`boats/${boat.id}`} className="btn btn-primary">
-                                                Show Details
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
+                                <BoatItem boat={boat}/>
                             </td>
                         </tr>
                     ))}
