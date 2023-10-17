@@ -9,15 +9,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
-axios.defaults.baseURL = 'http://localhost:80';
+axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}`;
 const client = new ApolloClient({
-    uri: "http://localhost/graphql",
+    uri: `${process.env.REACT_APP_GRAPHQL_API}`,
     cache: new InMemoryCache(),
 });
 
 function App() {
-
-
   return (
     <Router>
         <ApolloProvider client={client}>
@@ -26,7 +24,6 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Boats/>} exact />
                     <Route path="boats/:id" element={<BoatDetails />} />
-                    {/*<Route path="/payment/:id" element={<Payment />} />*/}
                     <Route path="/payment/completed" element={<PaymentCompleted />} />
                     <Route path="/payment/failed" element={<PaymentFailed />} />
                 </Routes>
@@ -34,7 +31,6 @@ function App() {
         </ApolloProvider>
 
     </Router>
-
   );
 }
 
